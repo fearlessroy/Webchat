@@ -11,8 +11,9 @@ public class Message {
     private int toId;
     private String content;
     private Date createdTime;
-    private int hasRead;
+    private int hasRead;  //未读:0，已读:1
     private String conversationId;
+    private int hasDel;
 
     public int getHasDel() {
         return hasDel;
@@ -22,7 +23,6 @@ public class Message {
         this.hasDel = hasDel;
     }
 
-    private int hasDel;
 
     public int getId() {
         return id;
@@ -82,4 +82,5 @@ public class Message {
     public void setConversationId(String conversationId) {
         this.conversationId = conversationId;
     }
+
 }

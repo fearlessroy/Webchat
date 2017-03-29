@@ -71,7 +71,7 @@ public class InitDatabaseTests {
 
         Assert.assertEquals(1, loginTicketDAO.selectByTicket("TICKET1").getUserId());
         Assert.assertEquals(2, loginTicketDAO.selectByTicket("TICKET1").getStatus());
-        Assert.assertEquals(8, contactsDAO.selectFriendIdByUserId(12).size());
+        Assert.assertEquals(8, contactsDAO.selectContactsIdByUserId(12).size());
     }
 
 
