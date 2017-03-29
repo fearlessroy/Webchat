@@ -12,7 +12,7 @@ hs_err_pid*
 .mvn/
 mvnw
 mvnw.cmd
-.mvn/wrapper
+.mvn/wrapper/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
