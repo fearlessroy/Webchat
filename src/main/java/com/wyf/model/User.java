@@ -10,6 +10,9 @@ public class User {
     private String salt;
     private String headUrl;
 
+    public User() {
+    }
+
     public User(String username) {
         this.username = username;
         this.password = "";

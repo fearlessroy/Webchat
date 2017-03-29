@@ -10,9 +10,19 @@ public class Message {
     private int fromId;
     private int toId;
     private String content;
-    private Date createdDate;
+    private Date createdTime;
     private int hasRead;
     private String conversationId;
+
+    public int getHasDel() {
+        return hasDel;
+    }
+
+    public void setHasDel(int hasDel) {
+        this.hasDel = hasDel;
+    }
+
+    private int hasDel;
 
     public int getId() {
         return id;
@@ -46,12 +56,12 @@ public class Message {
         this.content = content;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public int getHasRead() {
