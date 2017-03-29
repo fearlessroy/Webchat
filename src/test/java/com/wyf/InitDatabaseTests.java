@@ -1,12 +1,12 @@
 package com.wyf;
 
-import com.wyf.dao.FriendDAO;
+import com.wyf.dao.ContactsDAO;
 import com.wyf.dao.LoginTicketDAO;
 import com.wyf.dao.MessageDAO;
 import com.wyf.dao.UserDAO;
 import com.wyf.model.LoginTicket;
-import com.wyf.model.Message;
 import com.wyf.model.User;
+import com.wyf.service.ContactsService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,19 +23,20 @@ import java.util.Random;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = WebMessageApplication.class)
-@Sql("/init-schema.sql")
+//@Sql("/init-schema.sql")
 public class InitDatabaseTests {
     @Autowired
     UserDAO userDAO;
 
     @Autowired
-    FriendDAO friendDAO;
+    ContactsDAO contactsDAO;
 
     @Autowired
     LoginTicketDAO loginTicketDAO;
 
     @Autowired
     MessageDAO messageDAO;
+
 
     @Test
     public void initData() {
@@ -70,6 +71,7 @@ public class InitDatabaseTests {
 
         Assert.assertEquals(1, loginTicketDAO.selectByTicket("TICKET1").getUserId());
         Assert.assertEquals(2, loginTicketDAO.selectByTicket("TICKET1").getStatus());
+        Assert.assertEquals(8, contactsDAO.selectFriendIdByUserId(12).size());
     }
 
 

@@ -3,10 +3,10 @@ package com.wyf.model;
 /**
  * Created by w7397 on 2017/3/29.
  */
-public class Friend {
+public class Contacts {
     private int id;
     private int userId;
-    private int friendId;
+    private int contactsId;
 
     public int getId() {
         return id;
@@ -24,11 +24,11 @@ public class Friend {
         this.userId = userId;
     }
 
-    public int getFriendId() {
-        return friendId;
+    public int getContactsId() {
+        return contactsId;
     }
 
-    public void setFriendId(int friendId) {
-        this.friendId = friendId;
+    public void setContactsId(int contactsId) {
+        this.contactsId = contactsId;
     }
 }

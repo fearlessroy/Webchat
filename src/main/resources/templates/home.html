@@ -5,11 +5,25 @@
         <div class="jscroll-inner">
             <div class="daily">
                 #if ($user)
-                <p>hello web_message logined</p>
+                    #foreach($vo in $vos)
+                    <div class="user-avatar">
+                        $!{vo.friend.id}
+                        <a href="/user/$!{vo.friend.id}/"><img width="32" class="img-circle" src="$!{vo.friend.headUrl}"></a>
+                        $!{vo.friend.username}
+                    </div>
+                    #end
                 #else
-                <p>hello web_message please login</p>
+                <h3>please login</h3>
                 #end
             </div>
         </div>
     </div>
     </div>
+
+
+#if ($pop)
+<script>
+window.loginpop = $!{pop};
+</script>
+<script type="text/javascript" src="/scripts/main/site/home.js"></script>
+#end

@@ -84,6 +84,49 @@ public class UserService {
         return map;
     }
 
+    public Map<String, Object> addContacts(int currentId, int targetId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (currentId == 0) {
+            map.put("msguser", "请登录");
+            return map;
+        }
+
+        if (StringUtils.isBlank(String.valueOf(targetId))) {
+            map.put("msgpwd", "添加联系人ID不能为空");
+            return map;
+        }
+
+        User targetUser = userDAO.selectById(targetId);
+        if (targetUser == null) {
+            map.put("msguser", "目标用户不存在");
+        }
+
+        map.put("targetuserId", targetUser.getId());
+        return map;
+    }
+
+    public Map<String, Object> deleteContacts(int currentId, int targetId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (currentId == 0) {
+            map.put("msguser", "请登录");
+            return map;
+        }
+
+        if (StringUtils.isBlank(String.valueOf(targetId))) {
+            map.put("msgtid", "删除联系人ID不能为空");
+            return map;
+        }
+
+        User targetUser = userDAO.selectById(targetId);
+        if (targetUser == null) {
+            map.put("msguser", "目标用户不存在");
+        }
+
+        map.put("targetuserId", targetUser.getId());
+        return map;
+    }
+
+
     private String addLoginTicket(int userId) {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(userId);

@@ -1,7 +1,9 @@
 package com.wyf.controller;
 
 import com.wyf.model.HostHolder;
+import com.wyf.model.User;
 import com.wyf.model.ViewObject;
+import com.wyf.service.ContactsService;
 import com.wyf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,18 +24,33 @@ public class HomeController {
     @Autowired
     HostHolder hostHolder;
 
-//    private List<ViewObject> getUser() {
-//        int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
-//        List<ViewObject> vos = new ArrayList<>();
-//        ViewObject vo = new ViewObject();
-//        vo.set("user", userService.getUser(localUserId));
-//        vos.add(vo);
-//        return vos;
-//}
+    @Autowired
+    ContactsService contactsService;
+
+    private List<ViewObject> getFriends(int userId) {
+        List<Integer> friendIds = contactsService.getContactsIds(userId);
+        int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
+        List<ViewObject> vos = new ArrayList<>();
+        for (int id : friendIds) {
+            ViewObject vo = new ViewObject();
+            User friend=userService.getUser(id);
+            vo.set("friend",friend );
+            //vo.set("user", userService.getUser(news.getUserId()));
+
+//            if (localUserId != 0) {
+//                vo.set("like", likeService.getLikeStatus(localUserId, EntityType.ENTITY_NEWS, news.getId()));
+//
+//            } else {
+//                vo.set("like", 0);
+//            }
+            vos.add(vo);
+        }
+        return vos;
+    }
 
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
-//        model.addAttribute("vos",getUser());
+        model.addAttribute("vos", getFriends(12));
         return "home";
     }
 

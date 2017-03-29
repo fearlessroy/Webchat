@@ -9,11 +9,11 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `friend`;
-CREATE TABLE `friend` (
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE `contacts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` varchar(64) NOT NULL DEFAULT '',
-  `friend_id` varchar(128) NOT NULL DEFAULT '',
+  `contacts_id` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
