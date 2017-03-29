@@ -1,9 +1,11 @@
 package com.wyf.controller;
 
 import com.wyf.model.HostHolder;
+import com.wyf.model.Message;
 import com.wyf.model.User;
 import com.wyf.model.ViewObject;
 import com.wyf.service.ContactsService;
+import com.wyf.service.MessageService;
 import com.wyf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +29,20 @@ public class HomeController {
     @Autowired
     ContactsService contactsService;
 
-    private List<ViewObject> getFriends(int userId) {
-        List<Integer> friendIds = contactsService.getContactsIds(userId);
-        int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
+    @Autowired
+    MessageService messageService;
+
+    private List<ViewObject> getContacts(int userId) {
+        List<Integer> contactsIds = contactsService.getContactsIds(userId);
         List<ViewObject> vos = new ArrayList<>();
-        for (int id : friendIds) {
+        for (int id : contactsIds) {
+            String conversationId = id < userId ? String.format("%d_%d", id, userId) : String.format("%d_%d", userId, id);
             ViewObject vo = new ViewObject();
-            User friend=userService.getUser(id);
-            vo.set("friend",friend );
+            User contacts = userService.getUser(id);
+            vo.set("contacts", contacts);
+            vo.set("userId", userId);
+            vo.set("conversationId", conversationId);
+            vo.set("unreadCount", messageService.getUnreadCount(userId, conversationId));
             //vo.set("user", userService.getUser(news.getUserId()));
 
 //            if (localUserId != 0) {
@@ -50,7 +58,8 @@ public class HomeController {
 
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
-        model.addAttribute("vos", getFriends(12));
+        int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
+        model.addAttribute("vos", getContacts(localUserId));
         return "home";
     }
 

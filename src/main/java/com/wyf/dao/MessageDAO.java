@@ -43,4 +43,7 @@ public interface MessageDAO {
     @Delete({"delete from ", TABLE_NAME, " where id=#{id} "})
     void deleteMessageById(int id);
 
+    @Update({"update ", TABLE_NAME, " set has_read=1 where to_id=#{to_id} and conversation_id=#{conversation_id}"})
+    void updateMessageStatus(int to_id, String conversation_id);
+
 }

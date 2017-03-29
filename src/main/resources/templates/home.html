@@ -5,27 +5,29 @@
         <div class="jscroll-inner">
             <div class="daily">
                 #if ($user)
-                    #foreach($vo in $vos)
-                    <div class="user-avatar">
-                        $!{vo.friend.id}
-                        <a href="/user/$!{vo.friend.id}/"><img width="32" class="img-circle" src="$!{vo.friend.headUrl}"></a>
-                        $!{vo.friend.username}
-                        未读消息：
-                    </div>
+                #foreach($vo in $vos)
+                <div class="user-avatar">
+                    $!{vo.contacts.id}
+                    <a href="/chats/?userId=${vo.userId}&&contactsId=$!{vo.contacts.id}&&conversationId=${vo.conversationId}"><img width="32" class="img-circle"
+                                                           src="$!{vo.contacts.headUrl}"></a>
+                    $!{vo.contacts.username}
+                    未读消息：$!{vo.unreadCount}
+                </div>
                 </br>
-                    #end
+                #end
                 #else
                 <h3>please login</h3>
                 #end
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 
 #if ($pop)
 <script>
-window.loginpop = $!{pop};
+    window.loginpop = $
+    !{pop};
 </script>
 <script type="text/javascript" src="/scripts/main/site/home.js"></script>
 #end

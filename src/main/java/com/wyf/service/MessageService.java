@@ -30,6 +30,10 @@ public class MessageService {
         return messageDAO.getFromId(id);
     }
 
+    public void updateMessageStatus(int toId, String conversationId) {
+        messageDAO.updateMessageStatus(toId, conversationId);
+    }
+
     public void deleteMessageById(int id) {
         messageDAO.deleteMessageById(id);
     }
