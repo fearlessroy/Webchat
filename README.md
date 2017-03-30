@@ -18,7 +18,7 @@
 
 #Design:
 
-##1.前后端：
+  ##1.前后端：
 
   ###frontend:velocity
   
@@ -29,6 +29,7 @@
 ##2.数据库设计（详情见src/test/resources/init-scgema.sql）：
   
   ###User表：
+   
    id int auto_increment,
    
    username vachar(64),
@@ -40,6 +41,7 @@
    head_url varchar(256)
 
   ###contacts表：
+   
    id int aotu_increment,
    
    user_id varchar(64),
@@ -47,6 +49,7 @@
    contacts_id varchar(128)
 
   ###message表：
+   
    id int auto_increment,
    
    to_id int,
@@ -64,6 +67,7 @@
    has_del int
 
   ###login_ticket表：
+   
    id int auto_increment,
    
    user_id int,
