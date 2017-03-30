@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +33,10 @@ public class MessageService {
 
     public void updateMessageStatus(int toId, String conversationId) {
         messageDAO.updateMessageStatus(toId, conversationId);
+    }
+
+    public List<Message> getConversationList(String conversationId) {
+        return messageDAO.getConversationList(conversationId);
     }
 
     public void deleteMessageById(int id) {

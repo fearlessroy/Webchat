@@ -21,8 +21,8 @@ public interface MessageDAO {
             ") values (#{fromId},#{toId},#{content},#{hasRead},#{conversationId},#{createdTime},#{hasDel})"})
     int addMessage(Message message);
 
-    @Select({"select ", INSERT_FIELDS, " ,count(id) as id from ( select * from ", TABLE_NAME, " where from_id=#{userId} or to_id=#{userId} order by id desc) tt group by conversation_id order by id desc limit #{offset},#{limit}"})
-    List<Message> getConversationList(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit);
+    @Select({"select ", INSERT_FIELDS, " from ", TABLE_NAME, " where conversation_id=#{conversation_id} order by created_time "})
+    List<Message> getConversationList(@Param("conversation_id") String conversation_id);
 
     @Select({"select count(id) from ", TABLE_NAME, " where has_read = 0 and to_id=#{userId} and conversation_id=#{conversationId}"})
     int getConversationUnReadCount(@Param("userId") int userId, @Param("conversationId") String conversationId);
@@ -44,6 +44,7 @@ public interface MessageDAO {
     void deleteMessageById(int id);
 
     @Update({"update ", TABLE_NAME, " set has_read=1 where to_id=#{to_id} and conversation_id=#{conversation_id}"})
-    void updateMessageStatus(int to_id, String conversation_id);
+    void updateMessageStatus(@Param("to_id") int to_id, @Param("conversation_id") String conversation_id);
+
 
 }

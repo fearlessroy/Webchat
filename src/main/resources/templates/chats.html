@@ -1,0 +1,49 @@
+#parse("header.html")
+<div id="main">
+
+    <div class="container" id="daily">
+        <div class="jscroll-inner">
+            <div class="daily">
+                #if ($user)
+                    #foreach($vo in $vos)
+                        #if($vo.currentId == $vo.toId)
+                            <div class="user-avatar">
+                                <img width="32" class="img-circle" src="$!{vo.contactsHeadUrl}">
+                                $!{vo.contacts.username}<br>
+                                $!{vo.content}
+                                $!{vo.time}
+                            </div>
+                            <br>
+                        #elseif($vo.currentId == $vo.fromId)
+                                <div class="user-avatar" dir="rtl">
+                                    <img width="32" class="img-circle" src="$!{vo.userHeadUrl}">
+                                    $!{vo.contacts.username}<br>
+                                    $!{vo.content}
+                                    $!{vo.time}
+                                </div>
+                                <br>
+                        #end
+                    #end
+                #else
+                <h3>please login</h3>
+                #end
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post-comment-form">
+    <span>请输入信息</span>
+    <form method="post" action="/msg/sendMessage/?targetuserId=$!{vo1.targetId}">
+        <!--<input name="newsId" type="hidden" value="">-->
+
+        <div class="form-group text required comment_content">
+            <label class="text required sr-only">
+                <abbr title="required">*</abbr> 信息</label>
+            <textarea rows="5" class="text required comment-content form-control" name="content" id="content"></textarea>
+        </div>
+        <div class="text-right">
+            <input type="submit" name="commit" value="发 送" class="btn btn-default btn-info">
+        </div>
+    </form>
+</div>
+

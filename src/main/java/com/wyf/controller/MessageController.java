@@ -3,7 +3,6 @@ package com.wyf.controller;
 import com.wyf.model.Contacts;
 import com.wyf.model.HostHolder;
 import com.wyf.model.Message;
-import com.wyf.model.User;
 import com.wyf.service.ContactsService;
 import com.wyf.service.MessageService;
 import com.wyf.service.UserService;
@@ -41,14 +40,13 @@ public class MessageController {
     MessageService messageService;
 
     @RequestMapping(path = {"/msg/sendMessage/"}, method = {RequestMethod.GET, RequestMethod.POST})
-    @ResponseBody
     public String sendMessage(@RequestParam("targetuserId") int targetuserId,
                               @RequestParam("content") String content) {
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
         Map<String, Object> map = userService.addContacts(localUserId, targetuserId);
         List<Integer> AcontactsIds = contactsService.getContactsIds(localUserId);
         List<Integer> BcontactsIds = contactsService.getContactsIds(targetuserId);
-
+        String conversationId = localUserId < targetuserId ? String.format("%d_%d", localUserId, targetuserId) : String.format("%d_%d", targetuserId, localUserId);
         if (localUserId != 0) {
             if (AcontactsIds.contains(targetuserId)) {
                 try {
@@ -56,7 +54,7 @@ public class MessageController {
                     message.setFromId(localUserId);
                     message.setToId(targetuserId);
                     message.setContent(content);
-                    message.setConversationId(localUserId < targetuserId ? String.format("%d_%d", localUserId, targetuserId) : String.format("%d_%d", targetuserId, localUserId));
+                    message.setConversationId(conversationId);
                     message.setCreatedTime(new Date());
                     messageService.addMessage(message);
                     if (!BcontactsIds.contains(localUserId)) {
@@ -70,7 +68,7 @@ public class MessageController {
                             return MessageUtil.getJSONString(1, map);
                         }
                     }
-                    return MessageUtil.getJSONString(0, "发送消息成功");
+                    //return MessageUtil.getJSONString(0, "发送消息成功");
                 } catch (Exception e) {
                     logger.error("发送消息失败" + e.getMessage());
                     return MessageUtil.getJSONString(1, map);
@@ -82,6 +80,8 @@ public class MessageController {
         } else {
             return MessageUtil.getJSONString(1, map);
         }
+        return String.format("redirect:/chats/?userId=%d&&contactsId=%d&&conversationId=%s", localUserId, targetuserId, conversationId);
+
     }
 
     @RequestMapping(path = {"/msg/delMessage/"}, method = {RequestMethod.GET, RequestMethod.POST})
