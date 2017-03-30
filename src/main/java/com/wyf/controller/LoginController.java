@@ -1,5 +1,8 @@
 package com.wyf.controller;
 
+import com.wyf.async.EventModel;
+import com.wyf.async.EventProducer;
+import com.wyf.async.EventType;
 import com.wyf.service.UserService;
 import com.wyf.util.MessageUtil;
 import org.slf4j.Logger;
@@ -23,6 +26,8 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    EventProducer eventProducer;
 
     /**
      * register
@@ -85,11 +90,11 @@ public class LoginController {
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
-                /*
+
                 eventProducer.fireEvent(new
                         EventModel(EventType.LOGIN).setActorId((int) map.get("userId"))
                         .setExt("username", "wyf").setExt("email", "w739709403@126.com"));
-                        */
+
                 return MessageUtil.getJSONString(0, "登录成功");
             } else {
                 return MessageUtil.getJSONString(1, map);
