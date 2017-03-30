@@ -3,7 +3,6 @@ package com.wyf.service;
 import com.wyf.dao.LoginTicketDAO;
 import com.wyf.dao.UserDAO;
 import com.wyf.model.LoginTicket;
-import com.wyf.model.Message;
 import com.wyf.model.User;
 import com.wyf.util.MessageUtil;
 import org.apache.commons.lang.StringUtils;

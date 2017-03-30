@@ -15,7 +15,6 @@ import java.util.List;
 public interface ContactsDAO {
     String TABLE_NAME = "contacts";
     String INSERT_FIELDS = " user_id,contacts_id ";
-    String SELECT_FIELDS = " id, " + INSERT_FIELDS;
     String FRIEND_FIELDS = " contacts_id ";
     String USER_FIELDS = " user_id ";
 

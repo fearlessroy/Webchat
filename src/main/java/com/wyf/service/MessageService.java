@@ -2,7 +2,6 @@ package com.wyf.service;
 
 import com.wyf.dao.MessageDAO;
 import com.wyf.model.Message;
-import com.wyf.model.User;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

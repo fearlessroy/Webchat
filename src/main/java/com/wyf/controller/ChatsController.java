@@ -54,14 +54,6 @@ public class ChatsController {
             vo.set("time", message.getCreatedTime());
             vo.set("contactsHeadUrl", contacts.getHeadUrl());
             vo.set("userHeadUrl", localUser.getHeadUrl());
-            //vo.set("user", userService.getUser(news.getUserId()));
-
-//            if (localUserId != 0) {
-//                vo.set("like", likeService.getLikeStatus(localUserId, EntityType.ENTITY_NEWS, news.getId()));
-//
-//            } else {
-//                vo.set("like", 0);
-//            }
             vos.add(vo);
         }
         return vos;
@@ -71,14 +63,12 @@ public class ChatsController {
     @RequestMapping(path = {"/chats/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String chats(Model model, @RequestParam("userId") int userId,
                         @RequestParam("contactsId") int contactsId,
-                        @RequestParam("conversationId") String conversationId,
-                        HttpServletResponse response) {
+                        @RequestParam("conversationId") String conversationId) {
         messageService.updateMessageStatus(userId, conversationId);
-        ViewObject vo1=new ViewObject();
-        vo1.set("targetId",contactsId);
+        ViewObject vo1 = new ViewObject();
+        vo1.set("targetId", contactsId);
         model.addAttribute("vos", getChats(conversationId));
         model.addAttribute("vo1", vo1);
         return "chats";
-//        return String.format("redirect:/chats/?userId=%d&&contactsId=%d&&conversationId=%s",userId,contactsId,conversationId);
     }
 }

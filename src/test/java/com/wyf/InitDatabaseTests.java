@@ -6,13 +6,11 @@ import com.wyf.dao.MessageDAO;
 import com.wyf.dao.UserDAO;
 import com.wyf.model.LoginTicket;
 import com.wyf.model.User;
-import com.wyf.service.ContactsService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
@@ -72,7 +70,7 @@ public class InitDatabaseTests {
         Assert.assertEquals(1, loginTicketDAO.selectByTicket("TICKET1").getUserId());
         Assert.assertEquals(2, loginTicketDAO.selectByTicket("TICKET1").getStatus());
         Assert.assertEquals(8, contactsDAO.selectContactsIdByUserId(12).size());
-        messageDAO.updateMessageStatus(3,"2_3");
+        messageDAO.updateMessageStatus(3, "2_3");
     }
 
 

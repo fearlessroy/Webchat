@@ -43,14 +43,6 @@ public class HomeController {
             vo.set("userId", userId);
             vo.set("conversationId", conversationId);
             vo.set("unreadCount", messageService.getUnreadCount(userId, conversationId));
-            //vo.set("user", userService.getUser(news.getUserId()));
-
-//            if (localUserId != 0) {
-//                vo.set("like", likeService.getLikeStatus(localUserId, EntityType.ENTITY_NEWS, news.getId()));
-//
-//            } else {
-//                vo.set("like", 0);
-//            }
             vos.add(vo);
         }
         return vos;
@@ -63,11 +55,4 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(path = {"/user/{userId}/"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String userIndex(Model model, @PathVariable("userId") int userId,
-                            @RequestParam(value = "pop", defaultValue = "0") int pop) {
-//        model.addAttribute("vos", getUser());
-//        model.addAttribute("pop", pop);
-        return "home";
-    }
 }

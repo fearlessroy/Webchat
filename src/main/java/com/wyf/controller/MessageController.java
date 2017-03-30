@@ -68,7 +68,6 @@ public class MessageController {
                             return MessageUtil.getJSONString(1, map);
                         }
                     }
-                    //return MessageUtil.getJSONString(0, "发送消息成功");
                 } catch (Exception e) {
                     logger.error("发送消息失败" + e.getMessage());
                     return MessageUtil.getJSONString(1, map);

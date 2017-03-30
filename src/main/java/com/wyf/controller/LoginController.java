@@ -25,7 +25,7 @@ public class LoginController {
 
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public String reg(Model model, @RequestParam("username") String username,
+    public String reg(@RequestParam("username") String username,
                       @RequestParam("password") String password,
                       @RequestParam(value = "rember", defaultValue = "0") int rember,
                       HttpServletResponse response) {
@@ -39,11 +39,6 @@ public class LoginController {
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
-                /*
-                eventProducer.fireEvent(new
-                        EventModel(EventType.REGISTER).setActorId((int) map.get("userId"))
-                        .setExt("username", "wyf").setExt("email", "w739709403@126.com"));
-                */
                 return MessageUtil.getJSONString(0, "注册成功");
             } else {
                 return MessageUtil.getJSONString(1, map);
@@ -57,7 +52,7 @@ public class LoginController {
 
     @RequestMapping(path = {"/login/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public String login(Model model, @RequestParam("username") String username,
+    public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         @RequestParam(value = "rember", defaultValue = "0") int rember,
                         HttpServletResponse response) {
@@ -92,5 +87,4 @@ public class LoginController {
         userService.logout(ticket);
         return "redirect:/";
     }
-
 }

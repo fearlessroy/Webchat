@@ -1,7 +1,6 @@
 package com.wyf.service;
 
 import com.wyf.dao.ContactsDAO;
-import com.wyf.dao.UserDAO;
 import com.wyf.model.Contacts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
