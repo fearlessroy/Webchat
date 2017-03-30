@@ -39,6 +39,13 @@ public class MessageController {
     @Autowired
     MessageService messageService;
 
+    /**
+     * only loginned users can send messages to their contacts
+     *
+     * @param targetuserId
+     * @param content
+     * @return
+     */
     @RequestMapping(path = {"/msg/sendMessage/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String sendMessage(@RequestParam("targetuserId") int targetuserId,
                               @RequestParam("content") String content) {
@@ -83,6 +90,12 @@ public class MessageController {
 
     }
 
+    /**
+     * users can del messages they have sent
+     *
+     * @param messageId
+     * @return
+     */
     @RequestMapping(path = {"/msg/delMessage/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String delMessage(@RequestParam("messageId") int messageId) {

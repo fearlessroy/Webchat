@@ -26,7 +26,6 @@ import java.util.List;
  */
 @Controller
 public class ChatsController {
-    private static final Logger logger = LoggerFactory.getLogger(ChatsController.class);
 
     @Autowired
     MessageService messageService;
@@ -37,12 +36,17 @@ public class ChatsController {
     @Autowired
     HostHolder hostHolder;
 
+    /**
+     * get hostholder's conversations_viewobject
+     *
+     * @param conversationId
+     * @return vos
+     */
     private List<ViewObject> getChats(String conversationId) {
         List<Message> messageLists = messageService.getConversationList(conversationId);
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
         List<ViewObject> vos = new ArrayList<>();
         for (Message message : messageLists) {
-            //String conversationId = id < userId ? String.format("%d_%d", id, userId) : String.format("%d_%d", userId, id);
             ViewObject vo = new ViewObject();
             User contacts = userService.getUser(message.getFromId());
             User localUser = userService.getUser(localUserId);
@@ -59,7 +63,15 @@ public class ChatsController {
         return vos;
     }
 
-
+    /**
+     * get hostholder's conversation_lists
+     *
+     * @param model
+     * @param userId
+     * @param contactsId
+     * @param conversationId
+     * @return
+     */
     @RequestMapping(path = {"/chats/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String chats(Model model, @RequestParam("userId") int userId,
                         @RequestParam("contactsId") int contactsId,

@@ -32,6 +32,12 @@ public class ContactsController {
     @Autowired
     HostHolder hostHolder;
 
+    /**
+     * has loginned usera can add contacts
+     *
+     * @param targetuserId
+     * @return
+     */
     @RequestMapping(path = {"/addContacts/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String addContacts(@RequestParam("targetuserId") int targetuserId) {
@@ -59,6 +65,12 @@ public class ContactsController {
         }
     }
 
+    /**
+     * has loginned usera can del contacts
+     *
+     * @param targetuserId
+     * @return
+     */
     @RequestMapping(path = {"/delContacts/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String delContacts(@RequestParam("targetuserId") int targetuserId) {

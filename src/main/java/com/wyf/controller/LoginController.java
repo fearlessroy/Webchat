@@ -23,6 +23,16 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+
+    /**
+     * register
+     *
+     * @param username
+     * @param password
+     * @param rember
+     * @param response
+     * @return
+     */
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String reg(@RequestParam("username") String username,
@@ -50,6 +60,15 @@ public class LoginController {
 
     }
 
+    /**
+     * login
+     *
+     * @param username
+     * @param password
+     * @param rember
+     * @param response
+     * @return
+     */
     @RequestMapping(path = {"/login/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String login(@RequestParam("username") String username,
@@ -82,6 +101,12 @@ public class LoginController {
 
     }
 
+    /**
+     * logout
+     *
+     * @param ticket
+     * @return
+     */
     @RequestMapping(path = {"/logout/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);

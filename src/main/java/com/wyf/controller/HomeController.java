@@ -48,6 +48,12 @@ public class HomeController {
         return vos;
     }
 
+    /**
+     * home page,shows loginned users' contacts_list
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;

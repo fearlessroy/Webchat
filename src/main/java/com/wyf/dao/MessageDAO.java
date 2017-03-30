@@ -12,7 +12,6 @@ import java.util.List;
 public interface MessageDAO {
     String TABLE_NAME = " message ";
     String INSERT_FIELDS = " from_id, to_id, content, has_read, conversation_id, created_time,has_del ";
-    String SELECT_FIELDS = " id, " + INSERT_FIELDS;
     String FROM_FIELDS = " from_id ";
 
     @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,

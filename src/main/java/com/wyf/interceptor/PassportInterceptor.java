@@ -30,6 +30,15 @@ public class PassportInterceptor implements HandlerInterceptor {
     private HostHolder hostHolder;
 
 
+    /**
+     * check ticket is useful or not
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param o
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String ticket = null;
@@ -55,6 +64,15 @@ public class PassportInterceptor implements HandlerInterceptor {
     }
 
 
+    /**
+     * hostholder
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param o
+     * @param modelAndView
+     * @throws Exception
+     */
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         if (modelAndView != null && hostHolder.getUser() != null) {

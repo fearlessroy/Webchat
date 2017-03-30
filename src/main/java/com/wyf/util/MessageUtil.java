@@ -12,9 +12,7 @@ import java.util.Map;
  */
 public class MessageUtil {
     private static final Logger logger = LoggerFactory.getLogger(MessageUtil.class);
-    public static String HEADLINE_DOMAIN = "http://127.0.0.1:8080/";
     public static String[] IMAGE_FILE_EXT = new String[]{"png", "bmp", "jpg", "jpeg"};
-    public static int ANONYMOUS_ID = 2001;
 
     public static boolean isFillAllowed(String filExt) {
         for (String ext : IMAGE_FILE_EXT) {
