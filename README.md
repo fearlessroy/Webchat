@@ -1,5 +1,8 @@
 #web_message/liulishuo_test
 
+#summary:
+* 整体使用MVC架构，使用拦截器对用户进行登录认证，数据库使用Mysql,前端使用velocity模版，事件使用redis队列。
+
 #finished:
 * 用户可以注册、登录。需要 id（可以自己决定 email 或者 username）和 password
 * 用户登录后，进入联系人列表页面
@@ -81,36 +84,37 @@
    
 ##3.路由:
 
- ###注册：/reg/?username=&password=
+###注册：/reg/?username=&password=
  
- ###登录：/login/?username=&&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
+###登录：/login/?username=&&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
  
- ###登出：/logout/
+###登出：/logout/
  
- ###添加联系人：/addContacts/?targetuserId=
+###添加联系人：/addContacts/?targetuserId=
  
- ###删除联系人：/delContacts/?targetuserId=
+###删除联系人：/delContacts/?targetuserId=
  
- ###发送消息：/msg/sendMessage/?targetuserId=&&content=
+###发送消息：/msg/sendMessage/?targetuserId=&&content=
  
- ###删除消息：/msg/delMessage/?messageId=
+###删除消息：/msg/delMessage/?messageId=
  
- ###消息列表：/chats/?userId=&&contactsId=&&conversationId=
+###消息列表：/chats/?userId=&&contactsId=&&conversationId=
  
+###(所有权限操作必须用户登录)
   
 ##4.Coding:
  
- ###model:各个数据模型
+###model:各个数据模型
  
- ###dao层：直接操控底层数据库
+###dao层：直接操控底层数据库
  
- ###service:业务逻辑，使用dao层的接口
+###service:业务逻辑，使用dao层的接口
  
- ###controller:显示逻辑，将显示信息传递给volecity模版，并使用service层接口
+###controller:显示逻辑，将显示信息传递给volecity模版，并使用service层接口
  
- ###interceptor：拦截器，负责处理请求之前(检测ticket是否过期，是否登录，设置当前用户hostholder信息)，请求之后(hostholder.clear),面向整个请求过程
+###interceptor：拦截器，负责处理请求之前(检测ticket是否过期，是否登录，设置当前用户hostholder信息)，请求之后(hostholder.clear),面向整个请求过程
  
- ###async:一个简单的异步处理模块，eventproducer负责将event lpush入redis,eventconsumer实现一个线程，不断从redis中brpop,简单写了一个loginexception发邮件的事件
+###async:一个简单的异步处理模块，eventproducer负责将event lpush入redis,eventconsumer实现一个线程，不断从redis中brpop,简单写了一个loginexception发邮件的事件
 
  
 ##5.Test
