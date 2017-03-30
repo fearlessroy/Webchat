@@ -20,12 +20,10 @@ public class JedisAdapter implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //jedis = new Jedis("localhost");
         pool = new JedisPool("localhost", 6379);
     }
 
     private Jedis getJedis() {
-        //return jedis;
         return pool.getResource();
     }
 
@@ -117,6 +115,7 @@ public class JedisAdapter implements InitializingBean {
             }
         }
     }
+
     public long lpush(String key, String value) {
         Jedis jedis = null;
         try {

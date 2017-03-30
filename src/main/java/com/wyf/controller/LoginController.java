@@ -90,11 +90,11 @@ public class LoginController {
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
-
+                /* login ip check
                 eventProducer.fireEvent(new
                         EventModel(EventType.LOGIN).setActorId((int) map.get("userId"))
                         .setExt("username", "wyf").setExt("email", "w739709403@126.com"));
-
+                    */
                 return MessageUtil.getJSONString(0, "登录成功");
             } else {
                 return MessageUtil.getJSONString(1, map);
