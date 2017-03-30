@@ -19,11 +19,15 @@
 #Design:
 
 ##1.前后端：
+
   ###frontend:velocity
+  
   ###backend:Java SpringBoot
+  
   ###database:Mysql
   
 ##2.数据库设计（详情见src/test/resources/init-scgema.sql）：
+  
   ###User表：
    id int auto_increment,
    
@@ -72,6 +76,7 @@
    
    
 ##3.路由:
+
  ###注册：/reg/?username=&password=
  
  ###登录：/login/?username=&&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
