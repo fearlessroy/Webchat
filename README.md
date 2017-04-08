@@ -1,6 +1,6 @@
 #web_message/liulishuo_test
 
-=== summary:
+ === summary:
 * 整体使用MVC架构，使用拦截器对用户进行登录认证，数据库使用Mysql,前端使用velocity模版，事件使用redis队列。
 
 #finished:
