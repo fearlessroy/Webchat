@@ -1,6 +1,7 @@
 #web_message/liulishuo_test
 
- === summary:
+#summary:
+
 * 整体使用MVC架构，使用拦截器对用户进行登录认证，数据库使用Mysql,前端使用velocity模版，事件使用redis队列。
 
 #finished:
@@ -31,7 +32,7 @@
   
 ##2.数据库设计（详情见src/test/resources/init-scgema.sql）：
   
-  ###User表：
+  User表：
    
    id int auto_increment,
    
@@ -43,7 +44,7 @@
    
    head_url varchar(256)
 
-  ###contacts表：
+  contacts表：
    
    id int aotu_increment,
    
@@ -51,7 +52,7 @@
    
    contacts_id varchar(128)
 
-  ###message表：
+  message表：
    
    id int auto_increment,
    
@@ -69,7 +70,7 @@
    
    has_del int
 
-  ###login_ticket表：
+  login_ticket表：
    
    id int auto_increment,
    
@@ -86,7 +87,7 @@
 
 ###注册：/reg/?username=&password=
  
-###登录：/login/?username=&&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
+###登录：/login/?username=&&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
  
 ###登出：/logout/
  
@@ -118,7 +119,5 @@
 
  
 ##5.Test
-  对数据库值进行了简单的单元测试
-  
- 
+  对数据库值进行了简单的单元测试
  
