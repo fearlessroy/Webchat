@@ -1,9 +1,9 @@
 # web_message
 
-# summary:
+## summary:
 * 整体使用MVC架构，使用拦截器对用户进行登录认证，数据库使用Mysql,前端使用velocity模版，事件使用redis队列。
 
-# finished:
+## finished:
 * 用户可以注册、登录。需要 id（可以自己决定 email 或者 username）和 password
 * 用户登录后，进入联系人列表页面
     - 可以看到自己所有的联系人
@@ -15,21 +15,18 @@
     - 当用户 A 发私信给用户 B 时，如果 A 还不是 B 的联系人，应该自动把 A 添加为 B 的联系人，并能够在 B 的联系人列表正常显示（不需要实时）
     - 用户可以删除自己发的消息
 
-# defects:
+## defects:
 * 信息暂未实时更新
 * 前端功力有限，界面样式相对比较简单
 
-# Design:
+## Design:
 
-  ## 1.前后端：
-
-  ### frontend:velocity
+ ### 1.前后端：            
+ frontend:velocity                   
+ backend:Java SpringBoot                       
+ database:Mysql
   
-  ### backend:Java SpringBoot
-  
-  ### database:Mysql
-  
-## 2.数据库设计（详情见src/test/resources/init-scgema.sql）：
+  ### 2.数据库设计（详情见src/test/resources/init-scgema.sql）：
   
   ### User表：
    
