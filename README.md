@@ -63,14 +63,14 @@
    
    
  ### 3.路由:
-  注册：/reg?username=&password=                 
-  登录：/login?username=&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /                    
-  登出：/logout/                               
-  添加联系人：/addContacts?targetuserId=                              
-  删除联系人：/delContacts?targetuserId=                                       
-  发送消息：/msg/sendMessage?targetuserId=&content=                                    
-  删除消息：/msg/delMessage?messageId=                                    
-  消息列表：/chats?userId=&contactsId=&conversationId=                             
+  注册：/reg?username=&password=                                               
+  登录：/login?username=&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /          
+  登出：/logout/                               
+  添加联系人：/addContacts?targetuserId=                                    
+  删除联系人：/delContacts?targetuserId=                                   
+  发送消息：/msg/sendMessage?targetuserId=&content=                                
+  删除消息：/msg/delMessage?messageId=                                         
+  消息列表：/chats?userId=&contactsId=&conversationId=                                           
   (所有权限操作必须用户登录)
   
  ### 4.Coding:                      
