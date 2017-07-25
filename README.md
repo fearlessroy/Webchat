@@ -28,93 +28,62 @@
   
   ### 2.数据库设计（详情见src/test/resources/init-scgema.sql）：
   
-  ### User表：
+  #### User表：
    
-   id int auto_increment,
+   id int auto_increment,                     
+   username vachar(64),                          
+   password varchar(128),                                      
+   salt varcahr(32),                                    
+   head_url varchar(256)                        
+   
+   #### contacts表：
    
-   username vachar(64),
+   id int aotu_increment,                                
+   user_id varchar(64),                                
+   contacts_id varchar(128)                  
    
-   password varchar(128),
+   ### message表：
    
-   salt varcahr(32),
+   id int auto_increment,                                   
+   to_id int,                                     
+   from_id int,                             
+   content text,                                        
+   created_time datatime,                                           
+   has_read int,                                           
+   conversation_id varchar(45),                                         
+   has_del int                                      
    
-   head_url varchar(256)
-
-  ### contacts表：
+   ### login_ticket表：
    
-   id int aotu_increment,
-   
-   user_id varchar(64),
-   
-   contacts_id varchar(128)
-
-  ### message表：
-   
-   id int auto_increment,
-   
-   to_id int,   
-   from_id int,
-   
-   content text,
-   
-   created_time datatime,
-   
-   has_read int,
-   
-   conversation_id varchar(45),
-   
-   has_del int
-
-  ### login_ticket表：
-   
-   id int auto_increment,
-   
-   user_id int,
-   
+   id int auto_increment,                                                     
+   user_id int,                                     
    ticket varchar(45),
-   
-   expired datetime,
-   
+   expired datetime,                                           
    status int
    
    
-## 3.路由:
-
-### 注册：/reg?username=&password=
- 
-### 登录：/login?username=&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /
- 
-### 登出：/logout/
- 
-### 添加联系人：/addContacts?targetuserId=
- 
-### 删除联系人：/delContacts?targetuserId=
- 
-### 发送消息：/msg/sendMessage?targetuserId=&content=
- 
-### 删除消息：/msg/delMessage?messageId=
- 
-### 消息列表：/chats?userId=&contactsId=&conversationId=
- 
-### (所有权限操作必须用户登录)
-  
-## 4.Coding:
- 
-### model:各个数据模型
- 
-### dao层：直接操控底层数据库
- 
-### service:业务逻辑，使用dao层的接口
- 
-### controller:显示逻辑，将显示信息传递给volecity模版，并使用service层接口
- 
-### interceptor：拦截器，负责处理请求之前(检测ticket是否过期，是否登录，设置当前用户hostholder信息)，请求之后(hostholder.clear),面向整个请求过程
- 
-### async:一个简单的异步处理模块，eventproducer负责将event lpush入redis,eventconsumer实现一个线程，不断从redis中brpop,简单写了一个loginexception发邮件的事件
+ ### 3.路由:
+  注册：/reg?username=&password=                 
+  登录：/login?username=&password=  登录是会下发ticket并设置时间，登录成功后显示联系人列表，location是首页地址 /                    
+  登出：/logout/                               
+  添加联系人：/addContacts?targetuserId=                              
+  删除联系人：/delContacts?targetuserId=                                       
+  发送消息：/msg/sendMessage?targetuserId=&content=                                    
+  删除消息：/msg/delMessage?messageId=                                    
+  消息列表：/chats?userId=&contactsId=&conversationId=                             
+  (所有权限操作必须用户登录)
+  
+ ### 4.Coding:                      
+  model:各个数据模型                        
+  dao层：直接操控底层数据库                                       
+  service:业务逻辑，使用dao层的接口                                    
+  controller:显示逻辑，将显示信息传递给volecity模版，并使用service层接口                        
+  interceptor：拦截器，负责处理请求之前(检测ticket是否过期，是否登录，设置当前用户hostholder信息)，请求之后(hostholder.clear),面向整个请求过   程                               
+  async:一个简单的异步处理模块，eventproducer负责将event lpush入redis,eventconsumer实现一个线程，不断从redis中brpop,简单写了一个          loginexception发邮件的事件
 
  
-## 5.Test
-  对数据库值进行了简单的单元测试
+ ### 5.Test                             
+  对数据库值进行了简单的单元测试
   
  
  
